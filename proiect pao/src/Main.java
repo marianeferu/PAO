@@ -13,7 +13,7 @@ public class Main {
 
         Serviciu serviciu = new Serviciu();
 
-        serviciu.display_menu();
+       // serviciu.display_menu();
         serviciu.afisare_serviciu();
 
 
