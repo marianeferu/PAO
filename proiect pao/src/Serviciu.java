@@ -44,7 +44,9 @@ public class Serviciu {
                         case 1:
                             System.out.println("Am adaugat persoana la conducere ");
 
+                            System.out.println("id_birou: ");
                             int id_birou = in.nextInt();
+                            System.out.println("perioada_de_conducere: ");
                             String perioada_de_conducere = in.next();
 
                             pers.add(new Conducere(id_birou,perioada_de_conducere));
@@ -56,9 +58,15 @@ public class Serviciu {
 
                             System.out.println("Am adaugat persoana la Administratie ");
 
+                            System.out.println("suma finantata: ");
                             String suma_finantata = in.next();
+                            System.out.println("zone: ");
                             String zone= in.next();
+                            System.out.println("locatii ");
                             String locatii= in.next();
+
+
+
                             pers.add(new Administratie(suma_finantata,zone, locatii));
 
                             break;
@@ -68,8 +76,9 @@ public class Serviciu {
 
                             System.out.println("Am adaugat persoana la Voluntari ");
 
-
+                            System.out.println("nr_ore_efectuate: ");
                             Integer nr_ore_efectuate = in.nextInt();
+                            System.out.println("nr_proiecte: ");
                             Integer nr_proiecte = in.nextInt();
 
                             pers.add(new Voluntari(nr_ore_efectuate,nr_proiecte));
