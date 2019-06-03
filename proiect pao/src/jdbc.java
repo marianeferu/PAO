@@ -18,28 +18,28 @@ public class jdbc {
     private String password = "";
 
     public jdbc(){
-        String  sql1 = "DELETE FROM voluntari";
-        String  sql2 = "DELETE FROM proiecte_externe";
-        String  sql3 = "DELETE FROM proiecte_locale";
-        String  sql4 = "DELETE FROM evenimente";
+        String  sql1 = "DELETE FROM voluntari where nr_proiecte > 10";
+        String  sql2 = "DELETE FROM proiecte_externe where cheltuieli = 1000";
+        String  sql3 = "DELETE FROM proiecte_locale where nr_participanti >30 ";
+        
         try (
                 Connection con = DriverManager.getConnection(url, username, password);
                 PreparedStatement s1 = con.prepareStatement(sql1);
                 PreparedStatement s2 = con.prepareStatement(sql2);
                 PreparedStatement s3 = con.prepareStatement(sql3);
-                PreparedStatement s4 = con.prepareStatement(sql4);
+               
         ) {
             s1.executeUpdate();
             s2.executeUpdate();
             s3.executeUpdate();
-            s4.executeUpdate();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void adaugavoluntar(Integer nr_ore_efectuate,Integer nr_proiecte){
-        String  sql = "INSERT INTO voluntari VALUES (?, ?)";
+        String  sql = "INSERT INTO voluntari(nr_ore_efectuate, nr_proiecte) " + " VALUES (?, ?)";
 
         try (
                 Connection con = DriverManager.getConnection(url, username, password);
@@ -54,14 +54,14 @@ public class jdbc {
         }
     }
 
-    public void adaugaEvenimente(Evenimente e){
-        String  sql = "INSERT INTO evenimente VALUES (?, ?)";
+    public void adaugaEvenimente( String tip, String locatie_ev){
+        String  sql = "INSERT INTO evenimente(tip, locatie_ev" + " VALUES (?, ?)";
         try (
                 Connection con = DriverManager.getConnection(url, username, password);
                 PreparedStatement s = con.prepareStatement(sql);
         ) {
-            s.setString(1, e.getLocatie_ev());
-            s.setString(2, e.getTip());
+            s.setString(1, tip);
+            s.setString(2, locatie_ev);
 
 
             s.executeUpdate();
@@ -88,16 +88,16 @@ public class jdbc {
 
     }
 
-    public void adaugaadministratie(Administratie c){
+    public void adaugaadministratie(String suma_finantata, String zone,String locatii){
 
-        String  sql = "INSERT INTO listarespinsi VALUES (?, ?, ?)";
+        String  sql = "INSERT INTO administratie(suma_finantata, zone, locatii)" + " VALUES (?, ?, ?)";
         try (
                 Connection con = DriverManager.getConnection(url, username, password);
                 PreparedStatement s = con.prepareStatement(sql);
         ) {
-            s.setString(1, c.getSuma_finantata());
-            s.setString(2, c.getZone());
-            s.setString(3, c.getLocatii());
+            s.setString(1, suma_finantata);
+            s.setString(2, zone);
+            s.setString(3, locatii);
 
             s.executeUpdate();
         } catch (Exception e) {
@@ -133,13 +133,6 @@ public class jdbc {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
-
 
 
 
